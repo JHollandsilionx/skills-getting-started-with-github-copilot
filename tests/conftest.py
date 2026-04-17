@@ -1,65 +1,11 @@
+from copy import deepcopy
 import pytest
 from fastapi.testclient import TestClient
-from src.app import app
+from src.app import app, activities as APP_ACTIVITIES
 
 
 # Original activities state for resetting between tests
-ORIGINAL_ACTIVITIES = {
-    "Chess Club": {
-        "description": "Learn strategies and compete in chess tournaments",
-        "schedule": "Fridays, 3:30 PM - 5:00 PM",
-        "max_participants": 12,
-        "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
-    },
-    "Programming Class": {
-        "description": "Learn programming fundamentals and build software projects",
-        "schedule": "Tuesdays and Thursdays, 3:30 PM - 4:30 PM",
-        "max_participants": 20,
-        "participants": ["emma@mergington.edu", "sophia@mergington.edu"]
-    },
-    "Gym Class": {
-        "description": "Physical education and sports activities",
-        "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
-        "max_participants": 30,
-        "participants": ["john@mergington.edu", "olivia@mergington.edu"]
-    },
-    "Basketball Team": {
-        "description": "Competitive basketball league and practice",
-        "schedule": "Tuesdays and Thursdays, 4:00 PM - 5:30 PM",
-        "max_participants": 15,
-        "participants": ["james@mergington.edu", "sarah@mergington.edu"]
-    },
-    "Tennis Club": {
-        "description": "Learn tennis skills and match play",
-        "schedule": "Mondays and Wednesdays, 3:30 PM - 5:00 PM",
-        "max_participants": 12,
-        "participants": ["alex@mergington.edu"]
-    },
-    "Art Studio": {
-        "description": "Painting, drawing, and sculpture techniques",
-        "schedule": "Mondays and Wednesdays, 3:30 PM - 5:00 PM",
-        "max_participants": 16,
-        "participants": ["sophia@mergington.edu", "rachel@mergington.edu"]
-    },
-    "Drama Club": {
-        "description": "Theater performances and acting workshops",
-        "schedule": "Thursdays, 3:30 PM - 5:30 PM",
-        "max_participants": 20,
-        "participants": ["david@mergington.edu", "isabella@mergington.edu"]
-    },
-    "Science Club": {
-        "description": "Explore biology, chemistry, and physics experiments",
-        "schedule": "Tuesdays, 3:30 PM - 4:30 PM",
-        "max_participants": 18,
-        "participants": ["lucas@mergington.edu", "noah@mergington.edu"]
-    },
-    "Debate Team": {
-        "description": "Develop argumentation and public speaking skills",
-        "schedule": "Wednesdays and Fridays, 3:30 PM - 4:30 PM",
-        "max_participants": 14,
-        "participants": ["grace@mergington.edu", "ryan@mergington.edu"]
-    }
-}
+ORIGINAL_ACTIVITIES = deepcopy(APP_ACTIVITIES)
 
 
 @pytest.fixture
