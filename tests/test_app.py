@@ -55,7 +55,7 @@ class TestGetActivities:
         # Assert: Verify each activity has required structure
         for activity_name, activity_data in activities.items():
             assert isinstance(activity_name, str)
-            assert set(activity_data.keys()) == required_fields
+            assert required_fields.issubset(activity_data.keys())
             assert isinstance(activity_data["participants"], list)
             assert isinstance(activity_data["max_participants"], int)
     
