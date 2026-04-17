@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageText = document.getElementById("message-text");
   const messageClose = document.querySelector(".notification-close");
   let messageTimeout;
+  let closeTimeout;
 
   // Handle message close button
   messageClose.addEventListener("click", () => {
@@ -16,6 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear any existing timeout
     if (messageTimeout) {
       clearTimeout(messageTimeout);
+      messageTimeout = null;
+    }
+
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      closeTimeout = null;
     }
 
     messageText.textContent = text;
@@ -29,10 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeNotification() {
+    if (messageTimeout) {
+      clearTimeout(messageTimeout);
+      messageTimeout = null;
+    }
+
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+    }
+
     messageDiv.classList.add("closing");
-    setTimeout(() => {
+    closeTimeout = setTimeout(() => {
       messageDiv.classList.add("hidden");
       messageDiv.classList.remove("closing");
+      closeTimeout = null;
     }, 300);
   }
 
